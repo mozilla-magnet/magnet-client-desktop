@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "eslint:recommended"
+  ],
+
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+
+  "rules": {
+    "comma-dangle": ["warn", "only-multiline"],
+    "no-console": 0
+  },
+
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  }
+}
