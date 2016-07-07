@@ -4,16 +4,19 @@
  * Dependencies
  */
 
-var debug = require('debug')('magnet:App');
-var electron = require('electron');
-var path = require('path');
+const MagnetScanner = require('./lib/magnet-scanner');
+const debug = require('debug')('magnet:App');
+const electron = require('electron');
+const path = require('path');
 
-var MagnetScanner = require('./lib/magnet-scanner');
-var Menu = electron.Menu;
-var MenuItem = electron.MenuItem;
-var shell = electron.shell;
-var Tray = electron.Tray;
-var app = electron.app;
+
+const {
+  Menu,
+  MenuItem,
+  shell,
+  Tray,
+  app
+} = electron;
 
 function App() {
   this.tray = this.createTray();
@@ -22,6 +25,7 @@ function App() {
 
   this.scanner = new MagnetScanner(this.onItemFound.bind(this))
     .on('found', this.onItemFound.bind(this))
+    .on('lost', this.onItemLost.bind(this))
     .start()
 
   this.render();
@@ -38,6 +42,7 @@ App.prototype = {
     var menu = new Menu();
     var size = Object.keys(this.items).length;
 
+    // render all items
     for (var key in this.items) {
       let item = this.items[key];
       menu.append(new MenuItem({
@@ -47,11 +52,18 @@ App.prototype = {
     }
 
     if (!size) {
-      menu.append(new MenuItem({ label: 'Nothing found', enabled: false }));
+      menu.append(new MenuItem({
+        label: 'Nothing found',
+        enabled: false
+      }));
     }
 
     menu.append(new MenuItem({ type: 'separator' }));
-    menu.append(new MenuItem({ label: 'Quit', click: app.quit.bind(app) }));
+    menu.append(new MenuItem({
+      label: 'Quit',
+      click: app.quit.bind(app)
+    }));
+
     this.tray.setContextMenu(menu);
   },
 
@@ -59,6 +71,12 @@ App.prototype = {
     debug('item found', item);
     if (this.items[item.url]) return;
     this.items[item.url] = item;
+    this.render();
+  },
+
+  onItemLost(item) {
+    debug('item lost', item);
+    delete this.items[item.url];
     this.render();
   }
 }
@@ -68,27 +86,3 @@ app.on('ready', () => {
     new App();
   } catch(err) { console.log('err', err);}
 });
-
-
-// mb.on('ready', function ready () {
-//   console.log('app is ready')
-
-//   scanner.on('found', function(beacon) {
-//     console.log('found', beacon);
-//   });
-//   console.log('XXX');
-
-//   scanner.on('updated', function(beacon) {
-//     console.log('updated', beacon);
-//   });
-
-//   scanner.on('lost', function(beacon) {
-//     console.log('lost', beacon);
-//   });
-
-//   scanner.startScanning();
-
-// } catch(err) {
-//   console.log('error', err);
-// }
-// })
