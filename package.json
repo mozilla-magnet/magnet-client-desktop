@@ -4,7 +4,9 @@
   "description": "example menubar electron app",
   "dependencies": {
     "debug": "^2.2.0",
-    "eddystone-beacon-scanner": "^3.0.0"
+    "eddystone-beacon": "^1.0.6",
+    "eddystone-beacon-scanner": "^3.0.0",
+    "gimbus": "^0.1.4"
   },
   "devDependencies": {
     "electron-packager": "^5.2.1",
