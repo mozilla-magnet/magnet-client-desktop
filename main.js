@@ -8,7 +8,6 @@ const MagnetScanner = require('./lib/magnet-scanner');
 const advertise = require('./lib/advertiser');
 const debug = require('debug')('magnet:App');
 const electron = require('electron');
-const path = require('path');
 
 const {
   Menu,
@@ -33,7 +32,7 @@ function App() {
 
 App.prototype = {
   createTray() {
-    const tray = new Tray(path.resolve('./IconTemplate.png'));
+    const tray = new Tray(`${__dirname}/IconTemplate.png`);
     tray.on('drop-text', this.onDropText.bind(this));
     tray.setToolTip('Magnet');
     return tray;
@@ -112,9 +111,8 @@ App.prototype = {
 }
 
 app.on('ready', () => {
-  try {
-    new App();
-  } catch(err) { console.log('err', err);}
+  try { new App(); }
+  catch (e) { console.error(e); }
 });
 
 /**
