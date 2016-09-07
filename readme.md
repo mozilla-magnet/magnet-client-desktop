@@ -2,15 +2,18 @@
 
 ![](https://cdn.rawgit.com/mozilla-magnet/magnet-client-desktop/master/docs/magnet-desktop.gif)
 
-## Downloads
+## Download
 
 - [OSX](https://github.com/mozilla-magnet/magnet-client-desktop/releases/)
 
-## Build instructions
+## Run from source
 
 - `npm install`
-- `npm run rebuild-node-modules`
-- `npm run build` to build Magnet.app
-- `npm start` to run app from CLi without building
+- `npm start`
 
-> Only tested on Mac, but theoretically should work on Windows and Linux.
+## Build from source
+
+- `npm install`
+- `npm run build`
+
+> Only tested on Mac, but theoretically could work on Windows and Linux.
