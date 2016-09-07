@@ -2,6 +2,12 @@
 
 ![](https://cdn.rawgit.com/mozilla-magnet/magnet-client-desktop/master/docs/magnet-desktop.gif)
 
+## Downloads
+
+- [OSX](https://github.com/mozilla-magnet/magnet-client-desktop/releases/)
+
+## Build instructions
+
 - `npm install`
 - `npm run rebuild-node-modules`
 - `npm run build` to build Magnet.app
