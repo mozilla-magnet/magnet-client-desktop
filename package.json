@@ -1,7 +1,7 @@
 {
   "name": "magnet-client-desktop",
   "version": "1.1.2",
-  "description": "example menubar electron app",
+  "description": "A simple Physical Web menu-bar app for URL discovery and broadcast",
   "dependencies": {
     "debug": "^2.2.0",
     "eddystone-beacon": "^1.0.6",
