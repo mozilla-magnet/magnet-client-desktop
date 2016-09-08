@@ -16,7 +16,7 @@
   "main": "main.js",
   "scripts": {
     "postinstall": "electron-rebuild",
-    "build": "electron-packager . Magnet --out ./built --platform=darwin --arch=x64 --version=1.3.0 --icon=Icon.icns --prune",
+    "build": "electron-packager . ProjectMagnet --out ./built --platform=darwin --arch=x64 --version=1.3.0 --icon=Icon.icns --prune",
     "start": "electron ."
   }
 }
